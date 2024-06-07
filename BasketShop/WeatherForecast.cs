@@ -1,4 +1,4 @@
-namespace ProductService
+namespace BasketShop
 {
     public class WeatherForecast
     {

@@ -1,4 +1,4 @@
-namespace OrderService
+namespace ProfileService
 {
     public class WeatherForecast
     {
