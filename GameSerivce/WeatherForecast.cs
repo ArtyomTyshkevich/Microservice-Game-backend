@@ -1,4 +1,4 @@
-namespace BasketShop
+namespace GameSerivce
 {
     public class WeatherForecast
     {

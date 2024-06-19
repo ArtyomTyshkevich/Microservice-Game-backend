@@ -1,4 +1,4 @@
-namespace ShopService
+namespace RatingService
 {
     public class WeatherForecast
     {
