@@ -1,0 +1,33 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/User",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "profileservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Profile"
+    },
+    {
+      "UpstreamPathTemplate": "/api/User/{UserId}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "profileservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Profile/{UserId}"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost800"
+  }
+}
