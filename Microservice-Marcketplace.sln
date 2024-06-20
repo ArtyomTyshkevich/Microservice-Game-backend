@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RatingService", "RatingServ
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{379759C1-82FB-41A9-985A-244CAAFD4633}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "..\ApiGateway\ApiGateway.csproj", "{4E65C5F8-EF38-4947-8990-D72366C7C329}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{0A4290D2-6F57-412B-82C4-37AD6B9B6F38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{379759C1-82FB-41A9-985A-244CAAFD4633}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{379759C1-82FB-41A9-985A-244CAAFD4633}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{379759C1-82FB-41A9-985A-244CAAFD4633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E65C5F8-EF38-4947-8990-D72366C7C329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E65C5F8-EF38-4947-8990-D72366C7C329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E65C5F8-EF38-4947-8990-D72366C7C329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E65C5F8-EF38-4947-8990-D72366C7C329}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{2E495F02-61E7-4A01-AF8D-A83BE09E5B86} = {52E307C4-FAB2-44E3-8AB7-87E3A8473DBD}
 		{5738BAEE-F721-4EA5-8DED-924D92798319} = {52E307C4-FAB2-44E3-8AB7-87E3A8473DBD}
 		{FA9964DB-4EEA-467B-A1F9-191AE441EA0A} = {52E307C4-FAB2-44E3-8AB7-87E3A8473DBD}
+		{4E65C5F8-EF38-4947-8990-D72366C7C329} = {0A4290D2-6F57-412B-82C4-37AD6B9B6F38}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDE7BE51-F30E-49EB-A6DE-25DB202462B2}

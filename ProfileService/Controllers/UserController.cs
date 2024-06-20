@@ -7,11 +7,11 @@ namespace ProfileService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomeController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly ProfileDbContext _profileDbContext;
 
-        public HomeController(ProfileDbContext profileDbContext)
+        public UserController(ProfileDbContext profileDbContext)
         {
             _profileDbContext = profileDbContext;
         }
