@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameSerivce", "GameSerivce\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RatingService", "RatingService\RatingService.csproj", "{FA9964DB-4EEA-467B-A1F9-191AE441EA0A}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{379759C1-82FB-41A9-985A-244CAAFD4633}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{FA9964DB-4EEA-467B-A1F9-191AE441EA0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9964DB-4EEA-467B-A1F9-191AE441EA0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA9964DB-4EEA-467B-A1F9-191AE441EA0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379759C1-82FB-41A9-985A-244CAAFD4633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379759C1-82FB-41A9-985A-244CAAFD4633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379759C1-82FB-41A9-985A-244CAAFD4633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379759C1-82FB-41A9-985A-244CAAFD4633}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

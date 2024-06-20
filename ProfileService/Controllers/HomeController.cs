@@ -5,45 +5,84 @@ using ProfileService.Models;
 
 namespace ProfileService.Controllers
 {
-    public class HomeController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class HomeController : ControllerBase
     {
-        private readonly ProfileDbContext profileDbContext;
+        private readonly ProfileDbContext _profileDbContext;
+
         public HomeController(ProfileDbContext profileDbContext)
         {
-            this.profileDbContext = profileDbContext;
+            _profileDbContext = profileDbContext;
         }
+
         [HttpGet]
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var users = await profileDbContext.Users.ToListAsync();
-            return users;
+            return await _profileDbContext.Users.ToListAsync();
         }
-        [HttpGet("{UserId:string}")]
-        public async Task<User> GetById(string UserId)
+
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<User>> GetById(string userId)
         {
-            var user = await profileDbContext.Users.FirstOrDefaultAsync(u => u.Id == UserId);
+            var user = await _profileDbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
             return user;
         }
+
         [HttpPost]
         public async Task<ActionResult> Create(User user)
         {
-            await profileDbContext.Users.AddAsync(user);
-            await profileDbContext.SaveChangesAsync();
-            return Ok();
+            await _profileDbContext.Users.AddAsync(user);
+            await _profileDbContext.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetById), new { userId = user.Id }, user);
         }
-        [HttpPut]
-        public async Task<ActionResult> Update(User user)
+
+        [HttpPut("{userId}")]
+        public async Task<IActionResult> Update(string userId, User user)
         {
-            profileDbContext.Users.Update(user);
-            await profileDbContext.SaveChangesAsync();
-            return Ok();
+            if (userId != user.Id)
+            {
+                return BadRequest();
+            }
+
+            _profileDbContext.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                await _profileDbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_profileDbContext.Users.Any(e => e.Id == userId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
-        [HttpDelete("{UserId:string}")]
-        public async Task<ActionResult> Delete(string UserId)
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> Delete(string userId)
         {
-            var user = await profileDbContext.Users.FirstOrDefaultAsync(u => u.Id == UserId);
-            profileDbContext.Users.Remove(user);
-            return Ok();
+            var user = await _profileDbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _profileDbContext.Users.Remove(user);
+            await _profileDbContext.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

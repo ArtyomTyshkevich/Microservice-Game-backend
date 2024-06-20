@@ -1,0 +1,31 @@
+version: '3.4'
+
+networks:
+  backend:
+
+services:
+  profiledb:
+    container_name: profile-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=password@12345#
+    networks:
+      - backend
+    ports:
+      - "8001:1433"
+
+  profileservice:
+    container_name: profile-api
+    image: ${DOCKER_REGISTRY-}profileservice
+    build:
+      context: .
+      dockerfile: ProfileService/Dockerfile
+    networks:
+      - backend
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=profile-db;Database=ProfileDb;User Id=sa;Password=password@12345#;TrustServerCertificate=True;
+    depends_on:
+      - profiledb
+    ports:
+      - "8002:80"
