@@ -12,5 +12,6 @@ namespace AutorisationService.data
         {
             Database.Migrate();
         }
+    public DbSet<User> AutUsers {  get; set; }
     }
 }

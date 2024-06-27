@@ -20,7 +20,7 @@ services:
     image: ${DOCKER_REGISTRY-}profileservice
     build:
       context: .
-      dockerfile: ProfileService/Dockerfile
+      dockerfile: Services/ProfileService/Dockerfile
     networks:
       - backend
     environment:
@@ -29,3 +29,15 @@ services:
       - profiledb
     ports:
       - "8002:80"
+
+  apigateway:
+    container_name: api-gateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports: 
+    - 8000:80
+    networks:
+    - backend
+
