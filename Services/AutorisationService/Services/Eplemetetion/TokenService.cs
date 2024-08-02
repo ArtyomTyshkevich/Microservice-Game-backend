@@ -25,9 +25,4 @@ public class TokenService : ITokenService
 
         return tokenHandler.WriteToken(token);
     }
-
-    string ITokenService.CreateToken(User user, List<IdentityRole<long>> role)
-    {
-        throw new NotImplementedException();
-    }
 }

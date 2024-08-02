@@ -33,11 +33,12 @@ builder.Services.AddAuthentication(opt => {
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]!))
         };
     });
+
 builder.Services.AddAuthorization(options => options.DefaultPolicy =
-    new AuthorizationPolicyBuilder
-            (JwtBearerDefaults.AuthenticationScheme)
+    new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
         .RequireAuthenticatedUser()
         .Build());
+
 builder.Services.AddIdentity<User, IdentityRole<long>>()
     .AddEntityFrameworkStores<AutorisationDbContext>()
     .AddUserManager<UserManager<User>>()
@@ -84,4 +85,17 @@ app.UseAuthorization();
 app.UseCors("cors");
 app.MapControllers();
 
-app.Run();
+// Создание ролей асинхронно
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<long>>>();
+    var roles = new[] { "ADMIN", "MEMBER" };
+
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+            await roleManager.CreateAsync(new IdentityRole<long>(role));
+    }
+}
+
+await app.RunAsync(); // Запустите приложение асинхронно
