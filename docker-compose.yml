@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 
 networks:
   backend:
@@ -28,7 +28,7 @@ services:
     depends_on:
       - profiledb
     ports:
-      - "8002:80"
+      - "8002:8080"
 
   apigateway:
     container_name: api-gateway
@@ -37,7 +37,40 @@ services:
       context: .
       dockerfile: ApiGateway/Dockerfile
     ports: 
-    - 8000:80
+      - "8000:8080"
+    depends_on:
+      - profileservice
+      - autorisationservice
     networks:
-    - backend
+      - backend
 
+  autorisationdb:
+    container_name: autorisation-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=password@12345#
+    networks:
+      - backend
+    ports:
+      - "8003:1433"
+
+  autorisationservice:
+    container_name: autorisation-api
+    image: ${DOCKER_REGISTRY-}autorisationservice
+    build:
+      context: .
+      dockerfile: Services/AutorisationService/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=autorisation-db;Database=AutorisationDb;User Id=sa;Password=password@12345#;TrustServerCertificate=True;
+      - Jwt__Expire=60
+      - Jwt__Secret=superSecretKey@34567890123456789012
+      - Jwt__Issuer=https://localhost:5001
+      - Jwt__Audience=https://localhost:5001
+      - Jwt__TokenValidityInMinutes=30
+    depends_on:
+      - autorisationdb
+    ports:
+      - "8004:8080"
+    networks:
+      - backend

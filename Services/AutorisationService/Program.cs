@@ -44,6 +44,16 @@ builder.Services.AddIdentity<User, IdentityRole<long>>()
     .AddUserManager<UserManager<User>>()
     .AddSignInManager<SignInManager<User>>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "Pathnostics", Version = "v1" });
@@ -74,6 +84,8 @@ builder.Services.AddSwaggerGen(option =>
 
 var app = builder.Build();
 
+app.UseCors("AllowAll");
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
@@ -82,7 +94,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors("cors");
+
 app.MapControllers();
 
 // Создание ролей асинхронно
@@ -98,4 +110,4 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-await app.RunAsync(); // Запустите приложение асинхронно
+await app.RunAsync();

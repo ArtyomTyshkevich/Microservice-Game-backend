@@ -5,7 +5,8 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "profileservice": "StartDebugging",
-        "apigateway": "StartDebugging"
+        "apigateway": "StartDebugging",
+        "autorisationservice": "StartDebugging"
       }
     }
   }
