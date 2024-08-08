@@ -7,10 +7,10 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "profileservice",
-          "Port": 80
+          "Port": 8080
         }
       ],
-      "DownstreamPathTemplate": "/api/Profile"
+      "DownstreamPathTemplate": "/api/User"
     },
     {
       "UpstreamPathTemplate": "/api/User/{UserId}",
@@ -18,8 +18,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "profileservice",
-          "Port": 80
+          "Host": "profile-api",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/Profile/{UserId}"
@@ -30,8 +30,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "authorizationservice",
-          "Port": 80
+          "Host": "autorisation-api",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/accounts/login"
@@ -42,8 +42,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "authorizationservice",
-          "Port": 80
+          "Host": "autorisation-api",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/accounts/register"
@@ -51,11 +51,11 @@
     {
       "UpstreamPathTemplate": "/accounts/refresh-token",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "authorizationservice",
-          "Port": 80
+          "Host": "autorisation-api",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/accounts/refresh-token"
@@ -63,11 +63,11 @@
     {
       "UpstreamPathTemplate": "/accounts/revoke/{username}",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "authorizationservice",
-          "Port": 80
+          "Host": "autorisation-api",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/accounts/revoke/{username}"
@@ -78,14 +78,14 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "authorizationservice",
-          "Port": 80
+          "Host": "autorisation-api",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/accounts/revoke-all"
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8000"
+    "BaseUrl": "http://localhost:800"
   }
 }
