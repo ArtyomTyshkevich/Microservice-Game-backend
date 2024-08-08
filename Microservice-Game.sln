@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutorisationService", "Services\AutorisationService\AutorisationService.csproj", "{C58AB68E-F0AA-4A0E-84A1-C5DBD56AB87F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameSerivce", "Services\GameSerivce\GameSerivce.csproj", "{EE0E481E-8362-4CAD-93C1-44A345988577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameService", "Services\GameSerivce\GameService.csproj", "{EE0E481E-8362-4CAD-93C1-44A345988577}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfileService", "Services\ProfileService\ProfileService.csproj", "{BFF225B5-FA60-4B72-994E-BD3AFD007A9B}"
 EndProject
